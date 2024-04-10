@@ -8,23 +8,23 @@ import { createLogger } from '../../utils/logger.mjs';
 const logger = createLogger('http layer');
 
 export const handler = middy()
-  .use(httpErrorHandler())
-  .use(
-    cors({
-      credentials: true
-    })
-  )
-  .handler(async (event) => {
-    logger.info('CreateTodo event http');
-    const newTodo = JSON.parse(event.body)
+    .use(httpErrorHandler())
+    .use(
+        cors({
+            credentials: true
+        })
+    )
+    .handler(async(event) => {
+        logger.info('CreateTodo event http');
+        const newTodo = JSON.parse(event.body)
 
-    // TODO: Implement creating a new TODO item
-    // Write your logic here
-    const userId = getUserId(event);
-    const newIitem = await createTodo(newTodo, userId);
+        // TODO: Implement creating a new TODO item
+        // Write your logic here
+        const userId = getUserId(event);
+        const newIitem = await createTodo(newTodo, userId);
 
-    return {
-      statusCode: 201,
-      body: JSON.stringify({ item: newIitem })
-    };
-  });
+        return {
+            statusCode: 201,
+            body: JSON.stringify({ item: newIitem })
+        };
+    });

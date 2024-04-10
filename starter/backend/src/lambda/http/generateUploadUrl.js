@@ -8,23 +8,23 @@ import { createLogger } from '../../utils/logger.mjs';
 const logger = createLogger('http layer');
 
 export const handler = middy()
-  .use(httpErrorHandler())
-  .use(
-    cors({
-      credentials: true
-    })
-  )
-  .handler(async (event) => {
-    logger.info('createAttachmentPresignedUrl event http');
-    const todoId = event.pathParameters.todoId;
+    .use(httpErrorHandler())
+    .use(
+        cors({
+            credentials: true
+        })
+    )
+    .handler(async(event) => {
+        logger.info('createAttachmentPresignedUrl event http');
+        const todoId = event.pathParameters.todoId;
 
-    // TODO: Return a presigned URL to upload a file for a TODO item with the provided id
-    const url = await createAttachmentPresignedUrl(todoId);
+        // TODO: Return a presigned URL to upload a file for a TODO item with the provided id
+        const url = await createAttachmentPresignedUrl(todoId);
 
-    return {
-      statusCode: 201,
-      body: JSON.stringify({
-        upload: url
-      })
-    };
-  });
+        return {
+            statusCode: 201,
+            body: JSON.stringify({
+                upload: url
+            })
+        };
+    });

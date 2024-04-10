@@ -8,21 +8,21 @@ import { createLogger } from '../../utils/logger.mjs';
 const logger = createLogger('http layer');
 
 export const handler = middy()
-  .use(httpErrorHandler())
-  .use(
-    cors({
-      credentials: true
-    })
-  )
-  .handler(async (event) => {
-    logger.info('getTodos event http');
-    const userId = getUserId(event);
-    const todos = await getTodos(userId);
+    .use(httpErrorHandler())
+    .use(
+        cors({
+            credentials: true
+        })
+    )
+    .handler(async(event) => {
+        logger.info('getTodos event http');
+        const userId = getUserId(event);
+        const todos = await getTodos(userId);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        items: todos
-      })
-    };
-  });
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                items: todos
+            })
+        };
+    });

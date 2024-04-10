@@ -19,7 +19,7 @@ provider:
     TODOS_TABLE: serverless-todo-app-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
     IMAGES_S3_BUCKET: viettq-udacity-serverless-todo-images-${self:provider.stage}
-    SIGNED_URL_EXPIRATION: 300
+    SIGNED_URL_EXPIRATION: 3000
     PROJECT_NAME: udacity-serverless-todo-app
     INDEX_NAME: ${self:provider.environment.TODOS_CREATED_AT_INDEX}
   logs: 
@@ -172,7 +172,7 @@ resources:
       Properties:
         ResponseParameters:
           gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-          gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
           gatewayresponse.header.Access-Control-Allow-Methods: "'OPTIONS,GET,POST,PUT,DELETE'"
         ResponseType: DEFAULT_4XX
         RestApiId:
